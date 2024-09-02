@@ -4,6 +4,8 @@ import com.dev.tiago.fullstack_app.backend.dto.UserDto;
 import com.dev.tiago.fullstack_app.backend.entity.User;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
+
 @Component
 public class UserMapper {
 
@@ -30,7 +32,7 @@ public class UserMapper {
         user.setLastName(userDto.lastName());
         user.setEmail(userDto.email());
         user.setUserRole(userDto.userRole());
-        user.setCreatedAt(userDto.createdAt());
+        user.setCreatedAt(new Date());
 
         return user;
     }

@@ -1,12 +1,11 @@
 package com.dev.tiago.fullstack_app.backend.controller;
 
+import com.dev.tiago.fullstack_app.backend.dto.UserDto;
 import com.dev.tiago.fullstack_app.backend.service.impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/users")
@@ -22,10 +21,12 @@ public class UserController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getById(@PathVariable("id") Long id){
-
         return ResponseEntity.ok().body(userService.getById(id));
-
     }
 
+    @PostMapping("/create")
+    public ResponseEntity<?> create(UserDto userDto){
+        return new ResponseEntity<>(userService.create(userDto), HttpStatus.CREATED);
+    }
 
 }

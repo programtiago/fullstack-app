@@ -31,4 +31,9 @@ public class UserServiceImpl implements UserService {
     public UserDto getById(Long id) {
         return userRepository.findById(id).map(userMapper::toDto).orElseThrow();
     }
+
+    @Override
+    public UserDto create(UserDto user) {
+        return userMapper.toDto(userRepository.save(userMapper.toEntity(user)));
+    }
 }
