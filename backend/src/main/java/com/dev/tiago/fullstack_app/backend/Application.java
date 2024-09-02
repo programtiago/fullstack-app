@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
 import java.util.Date;
 
@@ -37,8 +36,12 @@ public class Application implements CommandLineRunner {
 		admin.setUserRole("ADMIN");
 		admin.setCreatedAt(new Date());
 
-		userRepository.save(admin);
+		if (userRepository.findByEmail(admin.getEmail()).isEmpty()){
+			userRepository.save(admin);
 
-		logger.info("User created sucessfully ");
+			logger.info("User created sucessfully ");
+		}
+
+		logger.error("User not created. Email already registered");
 	}
 }
