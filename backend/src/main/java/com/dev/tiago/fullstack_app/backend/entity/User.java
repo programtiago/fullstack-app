@@ -1,5 +1,6 @@
 package com.dev.tiago.fullstack_app.backend.entity;
 
+import com.dev.tiago.fullstack_app.backend.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,7 +24,7 @@ public class User {
     private String firstName;
     private String lastName;
     private String email;
-    private String userRole;
+    private UserRole userRole;
     @CreatedDate
     @Column(name = "created_at", nullable = false, updatable = false)
     private Date createdAt;
