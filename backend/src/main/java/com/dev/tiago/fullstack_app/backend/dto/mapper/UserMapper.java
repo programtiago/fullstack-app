@@ -2,6 +2,7 @@ package com.dev.tiago.fullstack_app.backend.dto.mapper;
 
 import com.dev.tiago.fullstack_app.backend.dto.UserDto;
 import com.dev.tiago.fullstack_app.backend.entity.User;
+import com.dev.tiago.fullstack_app.backend.enums.UserRole;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -24,14 +25,11 @@ public class UserMapper {
 
         User user = new User();
 
-        if (userDto.id() != null){
-            user.setId(userDto.id());
-        }
-
+        user.setId(userDto.id());
         user.setFirstName(userDto.firstName());
         user.setLastName(userDto.lastName());
         user.setEmail(userDto.email());
-        user.setUserRole(userDto.userRole());
+        user.setUserRole(UserRole.ADMIN);
         user.setCreatedAt(new Date());
 
         return user;

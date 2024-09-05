@@ -25,8 +25,9 @@ public class UserController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<?> create(UserDto userDto){
-        return new ResponseEntity<>(userService.create(userDto), HttpStatus.CREATED);
+    @ResponseStatus(code = HttpStatus.CREATED)
+    public UserDto create(@RequestBody UserDto user){
+        return userService.create(user);
     }
 
 }
