@@ -2,6 +2,7 @@ package com.dev.tiago.fullstack_app.backend.entity;
 
 import com.dev.tiago.fullstack_app.backend.enums.UserRole;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,13 +25,13 @@ import java.util.List;
 public class User implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String firstName;
     private String lastName;
     private String email;
     private String password;
-    private UserRole userRole;
+    private UserRole userRole = UserRole.ADMIN;
     @CreatedDate
     @Column(name = "created_at", nullable = false, updatable = false)
     private Date createdAt;

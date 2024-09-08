@@ -11,6 +11,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,9 +25,10 @@ public class AuthController {
 
     private final UserRepository userRepository;
     private final JwtUtil jwtUtil;
-    private UserServiceImpl userService;
+    private final UserServiceImpl userService;
     private final AuthenticationManager authManager;
 
+    @PostMapping("/login")
     public AuthenticationRequest login(@RequestBody AuthenticationRequest authenticationRequest){
         try{
             authManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getEmail(),

@@ -2,10 +2,8 @@ package com.dev.tiago.fullstack_app.backend.dto.mapper;
 
 import com.dev.tiago.fullstack_app.backend.dto.UserDto;
 import com.dev.tiago.fullstack_app.backend.entity.User;
-import com.dev.tiago.fullstack_app.backend.enums.UserRole;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
-
-import java.util.Date;
 
 @Component
 public class UserMapper {
@@ -15,7 +13,7 @@ public class UserMapper {
             return null;
         }
 
-        return new UserDto(user.getId(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getUserRole(), user.getCreatedAt());
+        return new UserDto(user.getId(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword());
     }
 
     public User toEntity(UserDto userDto){
@@ -23,14 +21,16 @@ public class UserMapper {
             return null;
         }
 
+
         User user = new User();
 
-        user.setId(userDto.id());
-        user.setFirstName(userDto.firstName());
-        user.setLastName(userDto.lastName());
-        user.setEmail(userDto.email());
-        user.setUserRole(UserRole.ADMIN);
-        user.setCreatedAt(new Date());
+        user.setId(userDto.getId());
+        user.setFirstName(userDto.getFirstName());
+        user.setLastName(userDto.getLastName());
+        user.setEmail(userDto.getEmail());
+        user.setPassword(new BCryptPasswordEncoder().encode(userDto.getPassword()));
+        user.setUserRole(userDto.getUserRole());
+        user.setCreatedAt(userDto.getCreatedAt());
 
         return user;
     }

@@ -2,16 +2,19 @@ package com.dev.tiago.fullstack_app.backend.service.impl;
 
 import com.dev.tiago.fullstack_app.backend.dto.UserDto;
 import com.dev.tiago.fullstack_app.backend.dto.mapper.UserMapper;
+import com.dev.tiago.fullstack_app.backend.entity.User;
 import com.dev.tiago.fullstack_app.backend.enums.UserRole;
 import com.dev.tiago.fullstack_app.backend.repository.UserRepository;
 import com.dev.tiago.fullstack_app.backend.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
