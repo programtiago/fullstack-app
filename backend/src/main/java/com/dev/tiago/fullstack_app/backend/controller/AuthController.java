@@ -11,12 +11,10 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
+import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/api/v1/auth")
@@ -28,8 +26,12 @@ public class AuthController {
     private final UserServiceImpl userService;
     private final AuthenticationManager authManager;
 
+    private final Logger LOG =
+            Logger.getLogger(AuthController.class.getName());
+
+
     @PostMapping("/login")
-    public AuthenticationRequest login(@RequestBody AuthenticationRequest authenticationRequest){
+    public AuthenticationResponse login(@RequestBody AuthenticationRequest authenticationRequest){
         try{
             authManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getEmail(),
                     authenticationRequest.getPassword()));
@@ -38,7 +40,7 @@ public class AuthController {
         }
 
         final UserDetails userDetails = userService.userDetailsService().loadUserByUsername(authenticationRequest.getEmail());
-        Optional<User> optionalUser = userRepository.findByEmail(authenticationRequest.getEmail());
+        Optional<User> optionalUser = userRepository.findFirstByEmail(authenticationRequest.getEmail());
 
         final String jwtToken = jwtUtil.generateToken(userDetails);
         AuthenticationResponse authenticationResponse = new AuthenticationResponse();
@@ -50,8 +52,6 @@ public class AuthController {
         }
 
         System.out.printf("LOGGED IN AS: " + optionalUser.get().getEmail() + " is sucessfully authenticated and has the autorities " + optionalUser.get().getUserRole());
-        return authenticationRequest;
+        return authenticationResponse;
     }
-
-
 }

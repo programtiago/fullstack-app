@@ -15,6 +15,6 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public boolean hasUserWithEmail(String email) {
-        return userRepository.findByEmail(email).isPresent();
+        return userRepository.findFirstByEmail(email).isPresent();
     }
 }
