@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'frontend';
+  userId!: string;
+  loggedUserId!: string;
+
+  isEmployeeLoggedIn:boolean = StorageService.isEmployeeLoggedIn();
+  isAdminLoggedIn:boolean = StorageService.isAdminLoggedIn();
 }
