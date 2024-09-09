@@ -48,8 +48,10 @@ export class LoginComponent {
         
         if (StorageService.isAdminLoggedIn()){
           this.snackBar.open("Login sucessfull " + user.role, "Close", { duration: 5000 });
+          this.router.navigateByUrl("/admin/dashboard");
         }else if (StorageService.isEmployeeLoggedIn()){
           this.snackBar.open("Login sucessfull " + user.role, "Close", { duration: 5000 });
+          this.router.navigateByUrl("/employee/dashboard");
       }
     }else{
       this.snackBar.open("Invalid credentials", "Close", { duration: 5000, panelClass: "error-snackbar"})
