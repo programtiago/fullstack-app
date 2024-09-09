@@ -47,9 +47,9 @@ export class LoginComponent {
         StorageService.saveToken(res.token)
         
         if (StorageService.isAdminLoggedIn()){
-          this.snackBar.open("Login com sucesso " + user.role, "Close", { duration: 5000 });
+          this.snackBar.open("Login sucessfull " + user.role, "Close", { duration: 5000 });
         }else if (StorageService.isEmployeeLoggedIn()){
-          this.snackBar.open("Login com sucesso " + user.role, "Close", { duration: 5000 });
+          this.snackBar.open("Login sucessfull " + user.role, "Close", { duration: 5000 });
       }
     }else{
       this.snackBar.open("Invalid credentials", "Close", { duration: 5000, panelClass: "error-snackbar"})
