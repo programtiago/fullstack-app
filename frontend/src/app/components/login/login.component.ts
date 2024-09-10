@@ -36,25 +36,29 @@ export class LoginComponent {
   onSubmit(){
     console.log(this.loginForm.value)
     this.authService.login(this.loginForm.value).subscribe((res) => {
-      console.log(res)
+      console.log("Res", res)
       if(res.userId != null){
-        console.log("Resposta ID#: " + res.userId)
+        console.log("Role#: " + res.userRole)
         const user = {
-          id:res.userId,
-          role:res.userRole
+          userId:res.userId,
+          userRole:res.userRole
         }
         StorageService.saveUser(user);
         StorageService.saveToken(res.token)
         
         if (StorageService.isAdminLoggedIn()){
-          this.snackBar.open("Login sucessfull " + user.role, "Close", { duration: 5000 });
-          this.router.navigateByUrl("/admin/dashboard");
+          this.snackBar.open("Login sucessfull " + user.userRole, "Close", { duration: 5000 });
+          this.router.navigateByUrl("admin/dashboard");
+          console.log("Admin logado")
         }else if (StorageService.isEmployeeLoggedIn()){
-          this.snackBar.open("Login sucessfull " + user.role, "Close", { duration: 5000 });
-          this.router.navigateByUrl("/employee/dashboard");
+          this.snackBar.open("Login sucessfull " + user.userRole, "Close", { duration: 5000 });
+          this.router.navigateByUrl("employee/dashboard");
+          console.log("Employee logado")
       }
     }else{
+      console.log("erro")
       this.snackBar.open("Invalid credentials", "Close", { duration: 5000, panelClass: "error-snackbar"})
     }
   })}
+
 }

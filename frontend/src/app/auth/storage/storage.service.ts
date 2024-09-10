@@ -12,6 +12,7 @@ export class StorageService {
 
   static saveToken(token: string):void{
     window.localStorage.removeItem(TOKEN);
+    window.localStorage.setItem(TOKEN, token);
   }
 
   static saveUser(user: any): void{
@@ -31,13 +32,14 @@ export class StorageService {
     const user = this.getUser();
     if (user == null)
       return '';
-     return user.role;
+     return user.userRole;
   }
 
   static isAdminLoggedIn(): boolean{
     if (this.getToken() === null)
       return false;
     const role: string = this.getUserRole();
+    console.log(role)
     return role == "ADMIN"
   }
 
@@ -45,6 +47,7 @@ export class StorageService {
     if (this.getToken() === null)
       return false;
     const role: string = this.getUserRole();
+    console.log(role)
     return role == "EMPLOYEE"
   }
 

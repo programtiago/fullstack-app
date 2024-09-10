@@ -8,7 +8,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { MaterialModule } from './material/MaterialModule';
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import  { HttpClientModule } from '@angular/common/http';
+import  { HttpClientModule, provideHttpClient } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,7 +24,8 @@ import  { HttpClientModule } from '@angular/common/http';
     HttpClientModule
   ],
   providers: [
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    provideHttpClient()
   ],
   bootstrap: [AppComponent]
 })

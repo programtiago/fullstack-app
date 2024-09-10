@@ -1,0 +1,57 @@
+.navbar{
+    display: flex;
+    align-items: center;
+    background-color: black;
+    height: 88px;
+}
+
+.buttons-container{
+    margin-right: 25px
+}
+
+.menu-icon{
+   scale: (2);
+}
+
+.logout-button{
+    transform: scale(2);
+}
+
+.profile-button{
+    transform: scale(2);
+    padding-right: 10px;
+}
+
+.navbar-brand{
+    font-size: 20px;
+}
+
+img{
+    width: 240px;
+    margin-left: 60px;
+}
+
+.spacer{
+    flex: 1;
+}
+
+.icons-container{
+    display: flex;
+    flex-direction: row;
+}
+
+button{
+    //color: white;
+    text-transform: uppercase;
+    margin-left: 2px;
+}
+
+button.active{
+    font-weight: 600;
+}
+
+.custom-toolbar{
+    background-color: #ff0000;
+}
+
+

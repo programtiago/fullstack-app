@@ -1,1 +1,67 @@
+<div *ngIf="isAdminLoggedIn">
+    <mat-toolbar color="primary" class="navbar">
+        <button class="menu-icon" mat-button (click)="openSideNav()">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <span class="spacer"></span>
+        <div class="buttons-container">
+            <button mat-button routerLink="/admin/dashboard" routerLinkActive="active">Dashboard</button>
+
+            <button mat-button [matMenuTriggerFor]="menu">Gestão Utilizadores</button>
+            <mat-menu #menu="matMenu" class="menuUsers">
+                <button mat-menu-item routerLink="/signup" routerLinkActive="active">
+                    Registar Utilizador
+                </button>
+
+                <button mat-menu-item routerLink="/admin/users" routerLinkActive="active" >
+                    Listar Utilizadores
+                </button>
+
+                <button mat-menu-item routerLinkActive="active" >
+                    Atribuir Colaborador
+                </button>
+            </mat-menu>
+
+            <button mat-button  [matMenuTriggerFor]="menuEquipment">Gestão Equipamentos</button>
+            <mat-menu #menuEquipment="matMenu">
+                <button mat-menu-item routerLink="admin/new-equipment" routerLinkActive="active">
+                    Registar Equipamento
+                </button>
+
+                <button mat-menu-item routerLink="admin/equipments" routerLinkActive="active" >
+                    Listar Equipamentos
+                </button>
+
+                <button mat-menu-item routerLink="admin/assign-equipment-person" routerLinkActive="active" >
+                    Atribuir Equipamento
+                </button>
+            </mat-menu>
+            <button mat-button routerLinkActive="active" [matMenuTriggerFor]="menuLocation">Gestão Localizações</button>
+            <mat-menu #menuLocation="matMenu">
+                <button mat-menu-item routerLink="/signup" routerLinkActive="active">
+                    Registar Localização
+                </button>
+
+                <button mat-menu-item routerLink="admin/equipments" routerLinkActive="active" >
+                    Listar Localizações
+                </button>
+            </mat-menu>
+        </div>
+
+        <div class="icons-container">
+            <button class="logout-button" mat-button (click)="logout()" routerLinkActive="active"><mat-icon>logout</mat-icon></button>
+        </div>
+    </mat-toolbar>
+</div>
+
+<div *ngIf="isEmployeeLoggedIn">
+    <mat-toolbar color="primary" class="navbar">
+        <button class="menu-icon" mat-button (click)="openSideNav()">
+            <mat-icon>menu</mat-icon>
+        </button>    
+        <span class="spacer"></span>
+        <button mat-button routerLink="/employee/dashboard" routerLinkActive="active">Dashboard</button>
+        <button class="logout-button" mat-button (click)="logout()" routerLinkActive="active"><mat-icon>logout</mat-icon></button>
+    </mat-toolbar>
+</div>
 <router-outlet></router-outlet>
