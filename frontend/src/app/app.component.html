@@ -7,43 +7,43 @@
         <div class="buttons-container">
             <button mat-button routerLink="/admin/dashboard" routerLinkActive="active">Dashboard</button>
 
-            <button mat-button [matMenuTriggerFor]="menu">Gestão Utilizadores</button>
+            <button mat-button [matMenuTriggerFor]="menu">Employees management</button>
             <mat-menu #menu="matMenu" class="menuUsers">
                 <button mat-menu-item routerLink="/signup" routerLinkActive="active">
-                    Registar Utilizador
+                    Signup Employee
                 </button>
 
-                <button mat-menu-item routerLink="/admin/users" routerLinkActive="active" >
-                    Listar Utilizadores
+                <button mat-menu-item routerLink="/admin/users-list" routerLinkActive="active" >
+                    View Employees
                 </button>
 
                 <button mat-menu-item routerLinkActive="active" >
-                    Atribuir Colaborador
+                    Assign to Employee
                 </button>
             </mat-menu>
 
-            <button mat-button  [matMenuTriggerFor]="menuEquipment">Gestão Equipamentos</button>
+            <button mat-button  [matMenuTriggerFor]="menuEquipment">Equipments management</button>
             <mat-menu #menuEquipment="matMenu">
                 <button mat-menu-item routerLink="admin/new-equipment" routerLinkActive="active">
-                    Registar Equipamento
+                    Signup Equipment
                 </button>
 
                 <button mat-menu-item routerLink="admin/equipments" routerLinkActive="active" >
-                    Listar Equipamentos
+                    View Equipments
                 </button>
 
                 <button mat-menu-item routerLink="admin/assign-equipment-person" routerLinkActive="active" >
-                    Atribuir Equipamento
+                    Assign Equipment
                 </button>
             </mat-menu>
-            <button mat-button routerLinkActive="active" [matMenuTriggerFor]="menuLocation">Gestão Localizações</button>
+            <button mat-button routerLinkActive="active" [matMenuTriggerFor]="menuLocation">Locations management</button>
             <mat-menu #menuLocation="matMenu">
                 <button mat-menu-item routerLink="/signup" routerLinkActive="active">
-                    Registar Localização
+                    Signup location
                 </button>
 
                 <button mat-menu-item routerLink="admin/equipments" routerLinkActive="active" >
-                    Listar Localizações
+                    View Locations
                 </button>
             </mat-menu>
         </div>
