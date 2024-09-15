@@ -36,9 +36,7 @@ export class LoginComponent {
   onSubmit(){
     console.log(this.loginForm.value)
     this.authService.login(this.loginForm.value).subscribe((res) => {
-      console.log("Res", res)
       if(res.userId != null){
-        console.log("Role#: " + res.userRole)
         const user = {
           userId:res.userId,
           userRole:res.userRole

@@ -26,4 +26,9 @@ export class UsersListComponent {
     this.users$ = this.adminService.getUsers();
   }
 
+  navigateToSignUp(){
+    console.log("redirection to signup component...")
+    this.router.navigateByUrl('admin/new-user')
+  }
+
 }

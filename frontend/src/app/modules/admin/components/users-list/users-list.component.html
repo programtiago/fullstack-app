@@ -29,7 +29,7 @@
 
                 <ng-container matColumnDef="role">
                     <mat-header-cell *matHeaderCellDef> Role </mat-header-cell>
-                    <mat-cell *matCellDef="let user"> {{user.role}} </mat-cell>
+                    <mat-cell *matCellDef="let user"> {{user.userRole}} </mat-cell>
                   </ng-container>
 
                   <ng-container matColumnDef="createdAt">
@@ -40,7 +40,7 @@
 
                   <ng-container matColumnDef="actions">
                     <mat-header-cell *matHeaderCellDef>
-                      <button mat-mini-fab color="accent" aria-label="Add user">
+                      <button (click)="navigateToSignUp()" mat-mini-fab color="accent" aria-label="Add user">
                         <mat-icon>add</mat-icon>
                       </button>
                     </mat-header-cell>
