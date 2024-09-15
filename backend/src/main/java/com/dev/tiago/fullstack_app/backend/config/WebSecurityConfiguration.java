@@ -1,5 +1,6 @@
 package com.dev.tiago.fullstack_app.backend.config;
 
+import com.dev.tiago.fullstack_app.backend.enums.UserRole;
 import com.dev.tiago.fullstack_app.backend.service.impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -12,9 +13,11 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -31,7 +34,12 @@ public class WebSecurityConfiguration {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request ->
-                        request.requestMatchers("/api/v1/auth/login", "/api/v1/users/**").permitAll());
+                        request.requestMatchers("/api/v1/auth/login").permitAll()
+                                .requestMatchers( "/api/v1/users").hasAnyRole(UserRole.ADMIN.name())
+                                .anyRequest().authenticated()).sessionManagement(
+                                        httpSecuritySessionManagementConfigurer -> httpSecuritySessionManagementConfigurer
+                                                .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .authenticationProvider(authenticationProvider()).addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
 
