@@ -16,7 +16,7 @@ export class UsersListComponent {
   users: User[] = [];
   users$: Observable<User[]>;
 
-  displayedColumns: string[] = ['firstName', 'lastName', 'email', 'role', 'actions']
+  displayedColumns: string[] = ['firstName', 'lastName', 'email', 'role', 'createdAt', 'actions']
 
   constructor(private adminService: AdminService, 
               private router: Router,

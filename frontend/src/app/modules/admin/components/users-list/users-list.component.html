@@ -5,7 +5,7 @@
 
     <mat-card-content>
         <mat-toolbar style="justify-content: center; align-items: center;">
-            <span>Lista de Utilizadores</span>
+            <span>Users List</span>
             <button mat-button>
               <mat-icon>filter_alt</mat-icon>
             </button>  
@@ -13,20 +13,15 @@
           <div *ngIf="users$ | async as users; else loading">
             <mat-table [dataSource]="users" class="mat-elevation-z8">
                 <ng-container matColumnDef="firstName">
-                  <mat-header-cell *matHeaderCellDef> Primeiro Nome </mat-header-cell>
+                  <mat-header-cell *matHeaderCellDef> First Name </mat-header-cell>
                   <mat-cell *matCellDef="let user"> {{user.firstName}} </mat-cell>
                 </ng-container>
               
                 <ng-container matColumnDef="lastName">
-                  <mat-header-cell *matHeaderCellDef> Último Nome </mat-header-cell>
+                  <mat-header-cell *matHeaderCellDef> Last Name </mat-header-cell>
                   <mat-cell *matCellDef="let user"> {{user.lastName}} </mat-cell>
                 </ng-container>
               
-                <ng-container matColumnDef="workNumber">
-                  <mat-header-cell *matHeaderCellDef> Número Mecanográfico </mat-header-cell>
-                  <mat-cell *matCellDef="let user"> {{user.workNumber}} </mat-cell>
-                </ng-container>
-
                 <ng-container matColumnDef="email">
                   <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
                   <mat-cell *matCellDef="let user"> {{user.email}} </mat-cell>
@@ -34,22 +29,28 @@
 
                 <ng-container matColumnDef="role">
                     <mat-header-cell *matHeaderCellDef> Role </mat-header-cell>
-                    <mat-cell *matCellDef="let user"> {{user.userRole}} </mat-cell>
+                    <mat-cell *matCellDef="let user"> {{user.role}} </mat-cell>
                   </ng-container>
+
+                  <ng-container matColumnDef="createdAt">
+                    <mat-header-cell *matHeaderCellDef> Creation Date </mat-header-cell>
+                    <mat-cell *matCellDef="let user"> {{user.createdAt}} </mat-cell>
+                  </ng-container>
+
 
                   <ng-container matColumnDef="actions">
                     <mat-header-cell *matHeaderCellDef>
-                      <button mat-mini-fab color="accent" aria-label="Adicionar um utilizador">
+                      <button mat-mini-fab color="accent" aria-label="Add user">
                         <mat-icon>add</mat-icon>
                       </button>
                     </mat-header-cell>
 
                       <mat-cell *matCellDef="let user">
-                        <button mat-icon-button color="primary" aria-label="Editar um utilizador">
-                          <mat-icon routerLink="/admin/edit/{{user.id}}">edit</mat-icon>
+                        <button mat-icon-button color="primary" aria-label="Update user">
+                          <mat-icon>edit</mat-icon>
                         </button>
                   
-                        <button mat-icon-button color="warn" aria-label="Eliminar um utilizador">
+                        <button mat-icon-button color="warn" aria-label="Delete user">
                           <mat-icon>delete</mat-icon>
                         </button>
 

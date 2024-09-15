@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { User } from '../../../interface/user';
 import { StorageService } from '../../../auth/storage/storage.service';
 
-const BASE_URL_ADMIN = "/api/v1/admin"
+const BASE_URL = "/api/v1/"
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class AdminService {
   constructor(private http: HttpClient) { }
 
   getUsers(): Observable<User[]>{
-    return this.http.get<User[]>(BASE_URL_ADMIN + "/users", {
+    return this.http.get<User[]>(BASE_URL + "/users", {
       headers: this.createAuthorizationHeader()
     })
   }
