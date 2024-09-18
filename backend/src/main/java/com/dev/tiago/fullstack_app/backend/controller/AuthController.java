@@ -2,7 +2,9 @@ package com.dev.tiago.fullstack_app.backend.controller;
 
 import com.dev.tiago.fullstack_app.backend.dto.AuthenticationRequest;
 import com.dev.tiago.fullstack_app.backend.dto.AuthenticationResponse;
+import com.dev.tiago.fullstack_app.backend.entity.LoginAttempt;
 import com.dev.tiago.fullstack_app.backend.entity.User;
+import com.dev.tiago.fullstack_app.backend.repository.LoginAttemptRepository;
 import com.dev.tiago.fullstack_app.backend.repository.UserRepository;
 import com.dev.tiago.fullstack_app.backend.service.impl.UserServiceImpl;
 import com.dev.tiago.fullstack_app.backend.util.JwtUtil;
@@ -13,6 +15,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -22,6 +26,8 @@ import java.util.logging.Logger;
 public class AuthController {
 
     private final UserRepository userRepository;
+    private final LoginAttemptRepository loginAttemptRepository;
+
     private final JwtUtil jwtUtil;
     private final UserServiceImpl userService;
     private final AuthenticationManager authManager;
@@ -36,6 +42,9 @@ public class AuthController {
             authManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getEmail(),
                     authenticationRequest.getPassword()));
         }catch (BadCredentialsException e){
+            LoginAttempt loginAttempt = new LoginAttempt(authenticationRequest.getEmail(), LocalDateTime.now());
+            loginAttemptRepository.save(loginAttempt);
+
             throw new BadCredentialsException("Incorrect username or password");
         }
 
