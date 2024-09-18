@@ -35,7 +35,7 @@ public class WebSecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request ->
                         request.requestMatchers("/api/v1/auth/login").permitAll()
-                                .requestMatchers("/api/v1/users/**").hasAuthority(UserRole.ADMIN.name())
+                                .requestMatchers("/api/v1/users/**", "/api/v1/login-attempt").hasAuthority(UserRole.ADMIN.name())
                                 .anyRequest().authenticated()).sessionManagement(
                                         httpSecuritySessionManagementConfigurer -> httpSecuritySessionManagementConfigurer
                                                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS))

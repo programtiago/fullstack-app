@@ -25,9 +25,15 @@ public class LoginAttempt {
     private String email;
     private String loginAttempt;
 
+    String dateFormatted = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
+
     public LoginAttempt(String email, LocalDateTime loginAttempt) {
         this.email = email;
-        this.loginAttempt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));;
+        this.loginAttempt = dateFormatted;
+    }
+
+    private String getLoginAttempt(){
+        return dateFormatted;
     }
 
 }
