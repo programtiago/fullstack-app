@@ -23,6 +23,11 @@
                   <mat-header-cell *matHeaderCellDef> IP Adress Source </mat-header-cell>
                   <mat-cell *matCellDef="let loginAttempt"> {{loginAttempt.ipAddressSource}} </mat-cell>
                 </ng-container>
+
+                <ng-container matColumnDef="userAgent">
+                  <mat-header-cell *matHeaderCellDef> Browser Used </mat-header-cell>
+                  <mat-cell *matCellDef="let loginAttempt"> {{loginAttempt.userAgent}} </mat-cell>
+                </ng-container>
               
                 <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
                 <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
