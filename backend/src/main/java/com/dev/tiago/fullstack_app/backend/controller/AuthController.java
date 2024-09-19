@@ -18,8 +18,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -40,14 +38,15 @@ public class AuthController {
 
 
     @PostMapping("/login")
-    public AuthenticationResponse login(@RequestBody AuthenticationRequest authenticationRequest) throws UnknownHostException {
+    public AuthenticationResponse login(@RequestBody AuthenticationRequest authenticationRequest, HttpServletRequest request) throws UnknownHostException {
         InetAddress ip = InetAddress.getLocalHost();
+        String userAgentRequest = request.getHeader("User-Agent");
 
         try{
             authManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getEmail(),
                     authenticationRequest.getPassword()));
         }catch (BadCredentialsException e){
-            LoginAttempt loginAttempt = new LoginAttempt(authenticationRequest.getEmail(), ip.toString().substring(10, 22));
+            LoginAttempt loginAttempt = new LoginAttempt(authenticationRequest.getEmail(), ip.toString().substring(10, 22), userAgentRequest.substring(0, 10));
             loginAttemptRepository.save(loginAttempt);
 
             throw new BadCredentialsException("Incorrect username or password");
