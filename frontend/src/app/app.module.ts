@@ -9,11 +9,13 @@ import { MaterialModule } from './material/MaterialModule';
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import  { HttpClientModule, provideHttpClient } from '@angular/common/http';
+import { LoginAttemptsListComponent } from './modules/admin/components/login-attempts-list/login-attempts-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    LoginAttemptsListComponent
   ],
   imports: [
     BrowserModule,

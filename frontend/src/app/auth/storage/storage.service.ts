@@ -39,7 +39,6 @@ export class StorageService {
     if (this.getToken() === null)
       return false;
     const role: string = this.getUserRole();
-    console.log(role)
     return role == "ADMIN"
   }
 
@@ -47,7 +46,6 @@ export class StorageService {
     if (this.getToken() === null)
       return false;
     const role: string = this.getUserRole();
-    console.log(role)
     return role == "EMPLOYEE"
   }
 

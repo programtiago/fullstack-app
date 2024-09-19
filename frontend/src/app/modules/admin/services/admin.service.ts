@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../../../interface/user';
 import { StorageService } from '../../../auth/storage/storage.service';
+import { LoginAttempt } from '../../../interface/login-attempt';
 
 const BASE_URL = "/api/v1/"
 
@@ -16,6 +17,12 @@ export class AdminService {
 
   getUsers(): Observable<User[]>{
     return this.http.get<User[]>(BASE_URL + "/users", {
+      headers: this.createAuthorizationHeader()
+    })
+  }
+
+  getLoginAttempts(): Observable<LoginAttempt[]>{
+    return this.http.get<LoginAttempt[]>(BASE_URL + "/login-attempts", {
       headers: this.createAuthorizationHeader()
     })
   }
