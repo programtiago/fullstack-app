@@ -10,7 +10,7 @@ import { AdminService } from '../../services/admin.service';
 })
 export class LoginAttemptsListComponent {
 
-  displayedColumns: string[] = ['email', 'loginAttempDateTime']
+  displayedColumns: string[] = ['email', 'loginAttemptDateTime', 'ipAddressSource']
 
   loginAttempts$: Observable<LoginAttempt[]>;
   loginAttempts: LoginAttempt[] = [];

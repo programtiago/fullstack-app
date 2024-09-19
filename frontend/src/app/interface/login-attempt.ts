@@ -1,5 +1,6 @@
 export interface LoginAttempt {
     id: string,
     email: string,
-    loginAttempDateTime: string
+    loginAttemptDateTime: string,
+    ipAddressSource: string
 }

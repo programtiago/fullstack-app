@@ -10,13 +10,18 @@
           <div *ngIf="loginAttempts$ | async as loginAttempts; else loading">
             <mat-table [dataSource]="loginAttempts" class="mat-elevation-z8">
                 <ng-container matColumnDef="email">
-                  <mat-header-cell *matHeaderCellDef> First Name </mat-header-cell>
+                  <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
                   <mat-cell *matCellDef="let loginAttempt"> {{loginAttempt.email}} </mat-cell>
                 </ng-container>
               
                 <ng-container matColumnDef="loginAttemptDateTime">
                   <mat-header-cell *matHeaderCellDef> Date & Time </mat-header-cell>
-                  <mat-cell *matCellDef="let loginAttempt"> {{loginAttempt.loginAttemptDateTime}} </mat-cell>
+                  <mat-cell *matCellDef="let loginAttempt"> {{loginAttempt.dateFormatted}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="ipAddressSource">
+                  <mat-header-cell *matHeaderCellDef> IP Adress Source </mat-header-cell>
+                  <mat-cell *matCellDef="let loginAttempt"> {{loginAttempt.ipAddressSource}} </mat-cell>
                 </ng-container>
               
                 <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
