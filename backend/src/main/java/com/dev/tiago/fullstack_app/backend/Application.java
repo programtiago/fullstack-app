@@ -1,6 +1,5 @@
 package com.dev.tiago.fullstack_app.backend;
 
-import com.dev.tiago.fullstack_app.backend.entity.Device;
 import com.dev.tiago.fullstack_app.backend.entity.Printer;
 import com.dev.tiago.fullstack_app.backend.entity.User;
 import com.dev.tiago.fullstack_app.backend.enums.UserRole;

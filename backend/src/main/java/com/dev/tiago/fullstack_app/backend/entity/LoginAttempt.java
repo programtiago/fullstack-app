@@ -24,16 +24,19 @@ public class LoginAttempt {
     private Long id;
     private String email;
     private String loginAttempt;
+    private String ipAddressSource;
 
     String dateFormatted = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
 
-    public LoginAttempt(String email) {
+    public LoginAttempt(String email, String ipAddressSource) {
         this.email = email;
         this.loginAttempt = dateFormatted;
+        this.ipAddressSource = ipAddressSource;
     }
 
     private String getLoginAttempt(){
-        return dateFormatted;
+        loginAttempt = dateFormatted;
+        return loginAttempt;
     }
 
 }

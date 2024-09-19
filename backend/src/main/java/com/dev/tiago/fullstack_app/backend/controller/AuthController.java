@@ -8,6 +8,7 @@ import com.dev.tiago.fullstack_app.backend.repository.LoginAttemptRepository;
 import com.dev.tiago.fullstack_app.backend.repository.UserRepository;
 import com.dev.tiago.fullstack_app.backend.service.impl.UserServiceImpl;
 import com.dev.tiago.fullstack_app.backend.util.JwtUtil;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -15,6 +16,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -37,12 +40,14 @@ public class AuthController {
 
 
     @PostMapping("/login")
-    public AuthenticationResponse login(@RequestBody AuthenticationRequest authenticationRequest){
+    public AuthenticationResponse login(@RequestBody AuthenticationRequest authenticationRequest) throws UnknownHostException {
+        InetAddress ip = InetAddress.getLocalHost();
+
         try{
             authManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getEmail(),
                     authenticationRequest.getPassword()));
         }catch (BadCredentialsException e){
-            LoginAttempt loginAttempt = new LoginAttempt(authenticationRequest.getEmail());
+            LoginAttempt loginAttempt = new LoginAttempt(authenticationRequest.getEmail(), ip.toString().substring(10, 22));
             loginAttemptRepository.save(loginAttempt);
 
             throw new BadCredentialsException("Incorrect username or password");
