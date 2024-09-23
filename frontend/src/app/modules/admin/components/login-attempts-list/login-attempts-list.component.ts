@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, pipe } from 'rxjs';
 import { LoginAttempt } from '../../../../interface/login-attempt';
 import { AdminService } from '../../services/admin.service';
 
@@ -10,13 +10,14 @@ import { AdminService } from '../../services/admin.service';
 })
 export class LoginAttemptsListComponent {
 
-  displayedColumns: string[] = ['email', 'loginAttemptDateTime', 'ipAddressSource', "userAgent"]
+
+  displayedColumns: string[] = ['email', 'loginAttemptDateTime', 'ipAddressSource', "userAgent", 'actions']
 
   loginAttempts$: Observable<LoginAttempt[]>;
   loginAttempts: LoginAttempt[] = [];
 
   constructor(private adminService: AdminService){
     this.loginAttempts$ = this.adminService.getLoginAttempts();
-}
-
+    this.adminService.getLoginAttempts().subscribe(login => login.filter(loginAtte => console.log(loginAtte.userAgent)))
+  }
 }

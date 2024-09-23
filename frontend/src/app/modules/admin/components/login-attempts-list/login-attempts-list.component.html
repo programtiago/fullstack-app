@@ -16,7 +16,7 @@
               
                 <ng-container matColumnDef="loginAttemptDateTime">
                   <mat-header-cell *matHeaderCellDef> Date & Time </mat-header-cell>
-                  <mat-cell *matCellDef="let loginAttempt"> {{loginAttempt.dateFormatted}} </mat-cell>
+                  <mat-cell *matCellDef="let loginAttempt"> {{loginAttempt.loginAttempt}} </mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="ipAddressSource">
@@ -28,6 +28,17 @@
                   <mat-header-cell *matHeaderCellDef> Browser Used </mat-header-cell>
                   <mat-cell *matCellDef="let loginAttempt"> {{loginAttempt.userAgent}} </mat-cell>
                 </ng-container>
+
+                <ng-container matColumnDef="actions">
+                  <mat-header-cell *matHeaderCellDef>
+                  </mat-header-cell>
+
+                  <mat-cell *matCellDef="let loginAttempt">
+                      <button mat-icon-button>
+                        <img src="/assets/icons/firefox.png">
+                      </button>
+                    </mat-cell>
+                </ng-container> 
               
                 <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
                 <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>

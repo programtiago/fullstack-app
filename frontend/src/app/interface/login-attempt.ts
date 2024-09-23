@@ -1,7 +1,7 @@
 export interface LoginAttempt {
     id: string,
     email: string,
-    loginAttemptDateTime: string,
+    loginAttempt: string,
     ipAddressSource: string,
     userAgent: string
 }
