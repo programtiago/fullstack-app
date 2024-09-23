@@ -46,7 +46,7 @@ public class AuthController {
             authManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getEmail(),
                     authenticationRequest.getPassword()));
         }catch (BadCredentialsException e){
-            LoginAttempt loginAttempt = new LoginAttempt(authenticationRequest.getEmail(), ip.toString().substring(10, 22), userAgentRequest.substring(0, 10));
+            LoginAttempt loginAttempt = new LoginAttempt(authenticationRequest.getEmail(), ip.toString().substring(10, 22), userAgentRequest.substring(0, 11));
             loginAttemptRepository.save(loginAttempt);
 
             throw new BadCredentialsException("Incorrect username or password");

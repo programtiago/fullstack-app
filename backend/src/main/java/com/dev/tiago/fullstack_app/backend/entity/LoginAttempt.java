@@ -27,18 +27,10 @@ public class LoginAttempt {
     private String ipAddressSource;
     private String userAgent;
 
-    String dateFormatted = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
-
     public LoginAttempt(String email, String ipAddressSource, String userAgent) {
         this.email = email;
-        this.loginAttempt = dateFormatted;
+        this.loginAttempt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));;
         this.ipAddressSource = ipAddressSource;
         this.userAgent = userAgent;
     }
-
-    private String getLoginAttempt(){
-        loginAttempt = dateFormatted;
-        return loginAttempt;
-    }
-
 }
